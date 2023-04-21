@@ -49,17 +49,17 @@ print(f"Winner: {winner_cdt}")
 print(line_separator)
 
 
-# Print to text file
-PyPoll_text = "Analysis/PyPoll_Results.txt"
-
-with open(PyPoll_text, 'w') as textfile:
-    line1 = title + "\n"
-    line2 = line_separator + "\n"
-    line3 = "Total Votes: " + str(total_votes) + "\n"
-    line4 = line_separator + "\n"
-    line5 = str{candidates[x]} {str(percent_votes[x])} ({str(number_votes[x])}) + "\n"
-    line6 = line_separator + "\n"
-    line7 = "Winner: " + str(winner_cdt) + "\n"
-    line8 = line_separator
-    textfile.writelines([line1, line2, line3, line4, line5, line6, line7, line8])
-    textfile.close
+# Print to csv file
+results_path = "Analysis/PyPoll_Results.csv"
+with open(results_path, 'w') as csvfile:
+    csvwriter = csv.writer(csvfile, delimiter=",")
+    csvwriter.writerow(["Election Results"])
+    csvwriter.writerow(["----------------------------------"])
+    csvwriter.writerow([str(f"Total Votes:{str(total_votes)} ")])
+    csvwriter.writerow(["----------------------------------"])
+    for x in range(len(candidates)):
+        csvwriter.writerow([str(f"{candidates[x]} {str(percent_votes[x])} ({str(number_votes[x])})")])
+    csvwriter.writerow(["----------------------------------"])
+    csvwriter.writerow([str(f"Winner:{str(winner_cdt)} ")])
+    csvwriter.writerow(["----------------------------------"])
+    csvfile.close
